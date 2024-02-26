@@ -141,22 +141,22 @@ async def start_command(client: Client, message: Message):
             verify_status = await get_verify_status(id)
             if IS_VERIFY and not verify_status['is_verified']:
                 short_url = f"api.shareus.io"
-                full_tut_url = f"https://t.me/contentprovider_ebot?start=Z2V0LTg1MTY0MDEyNDMxNzg1MA"
+                full_tut_url = f"https://t.me/ongoing_anime_crunchyroll/3"
                 token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
                 await update_verify_status(id, verify_token=token, link="")
                 link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://t.me/{client.username}?start=verify_{token}')
                 btn = [
-                    [InlineKeyboardButton("Click Here To Verify", url=link)],
-                    [InlineKeyboardButton('How To Open Link', url=full_tut_url)]
+                    [InlineKeyboardButton("🔂 Refresh Token", url=link)],
+                    [InlineKeyboardButton('🛟 Tutorial', url=full_tut_url)]
                 ]
                 await message.reply(f"""<b>
 Your Ads token is expired, refresh your token and try again.
-Token Timeout: 24 hour
 
 <u>What is the token?</u>
 This is a token based verification authorisation system, if you pass 1 ad,
-Then you can use the bot for 24 hour.</b>
+Then you can use the bot for 24 hour.
 
+To resolve any issues contact- @StupidBoi69</b>
 """, reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
 
 # ... (rest of the code remains unchanged))
