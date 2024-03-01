@@ -144,7 +144,7 @@ async def start_command(client: Client, message: Message):
                 full_tut_url = f"https://t.me/ongoing_anime_crunchyroll/3"
                 token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
                 await update_verify_status(id, verify_token=token, link="")
-                link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://t.me/{client.username}?start=verify_{token}')
+                link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://t.me/{bot.username}?start=verify_{token}')
                 btn = [
                     [InlineKeyboardButton("🔂 Refresh Token", url=link)],
                     [InlineKeyboardButton('🛟 Tutorial', url=full_tut_url)]
