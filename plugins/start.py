@@ -61,7 +61,7 @@ async def start_command(client: Client, message: Message):
             await update_verify_status(id, is_verified=True, verified_time=time.time())
             if verify_status["link"] == "":
                 reply_markup = None
-            await message.reply(f"<b>🌺 Congratulations Your token successfully verified and valid for: 24 hour </b>", reply_markup=reply_markup, protect_content=False, quote=True)
+            await message.reply(f"<b>🌺 Congratulations Your token successfully verified and valid for: {get_exp_time(VERIFY_EXPIRE)} </b>", reply_markup=reply_markup, protect_content=False, quote=True)
 
         elif len(message.text) > 7 and verify_status['is_verified']:
             try:
@@ -144,7 +144,7 @@ async def start_command(client: Client, message: Message):
                 full_tut_url = f"https://t.me/ongoing_anime_crunchyroll/3"
                 token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
                 await update_verify_status(id, verify_token=token, link="")
-                link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://t.me/{bot.username}?start=verify_{token}')
+                link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://t.me/{client.username}?start=verify_{token}')
                 btn = [
                     [InlineKeyboardButton("🔂 Refresh Token", url=link)],
                     [InlineKeyboardButton('🛟 Tutorial', url=full_tut_url)]
@@ -154,7 +154,7 @@ Your Ads token is expired, refresh your token and try again.
 
 <u>What is the token?</u>
 This is a token based verification authorisation system, if you verify this ad,
-Then you can use the bot for 24 hour.
+Then you can use the bot for {get_exp_time(VERIFY_EXPIRE)}.
 
 To resolve any issues contact: @StupidBoi69</b>
 """, reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
